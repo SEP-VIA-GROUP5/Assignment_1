@@ -3,8 +3,8 @@ package model;
 public interface HeaterState {
 
 
-  public void turnUp(Heater heater);
-  public void turnDown(Heater heater);
+  default void turnUp(Heater heater){}
+  default void turnDown(Heater heater){};
   public int getPower();
 
 }

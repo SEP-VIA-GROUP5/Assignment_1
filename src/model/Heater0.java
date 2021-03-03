@@ -7,10 +7,6 @@ public class Heater0 implements HeaterState{
     heater.setState(new Heater1());
   }
 
-  @Override public void turnDown(Heater heater)
-  {
-  }
-
   @Override public int getPower()
   {
     return 0;

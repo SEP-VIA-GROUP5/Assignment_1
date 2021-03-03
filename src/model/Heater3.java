@@ -2,10 +2,26 @@ package model;
 
 public class Heater3 implements HeaterState{
 
-  private int limit = 40000;
+  Heater3(Heater heater){
+    int limit = 40000;
 
-  @Override public void turnUp(Heater heater)
-  {
+    Thread timeOut = new Thread(()->
+    {
+      try {
+        Thread.sleep(limit);
+        if(this.getPower() == 3)
+        {
+          this.turnDown(heater);
+        }
+      }
+      catch(InterruptedException e)
+      {
+        e.printStackTrace();
+      }
+
+    });
+    timeOut.setDaemon(true);
+    timeOut.start();
   }
 
   @Override public void turnDown(Heater heater)
