@@ -32,7 +32,7 @@ public class Heater implements UnnamedPropertyChangeSubject
 
   public int getPower()
   {
-    state.getPower();
+    return state.getPower();
   }
 
   @Override public void addListener(PropertyChangeListener listener)
