@@ -23,16 +23,11 @@ public class Heater implements UnnamedPropertyChangeSubject
 
   public void turnUp()
   {
-
+    state.turnUp(this);
   }
   public void turnDown()
   {
-
-  }
-
-  public void timeout()
-  {
-
+    state.turnDown(this);
   }
 
   public int getPower()
@@ -40,13 +35,13 @@ public class Heater implements UnnamedPropertyChangeSubject
     state.getPower();
   }
 
-  @Override public void addListener(String propertyName, PropertyChangeListener listener)
+  @Override public void addListener(PropertyChangeListener listener)
   {
-    propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+    propertyChangeSupport.addPropertyChangeListener(listener);
   }
 
-  @Override public void removeListener(String propertyName,PropertyChangeListener listener)
+  @Override public void removeListener(PropertyChangeListener listener)
   {
-    propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+    propertyChangeSupport.addPropertyChangeListener(listener);
   }
 }
