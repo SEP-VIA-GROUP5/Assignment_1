@@ -1,8 +1,11 @@
 import model.*;
+import utility.observer.subject.NamedPropertyChangeSubject;
 
 import javax.swing.plaf.TableHeaderUI;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class TemperatureSimulation
+public class TemperatureSimulation implements NamedPropertyChangeSubject
 {
   private int d1; //distance 1
   private int d2; //distance 2
@@ -12,9 +15,11 @@ public class TemperatureSimulation
   private ModelManager manager;
   private static final int min = -10;
   private static final int max = 10;
+  private PropertyChangeSupport propertyChangeSupport;
 
   public TemperatureSimulation(int d1, int d2, ModelManager manager)
   {
+    propertyChangeSupport = new PropertyChangeSupport(this);
     this.d1 = d1;
     this.d2 = d2;
     this.manager = manager;
@@ -98,4 +103,15 @@ public class TemperatureSimulation
     return t0;
   }
 
+  @Override public void addListener(String propertyName,
+      PropertyChangeListener listener)
+  {
+    propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+  }
+
+  @Override public void removeListener(String propertyName,
+      PropertyChangeListener listener)
+  {
+    propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+  }
 }
