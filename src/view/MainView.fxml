@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainView">
    <children>
       <VBox layoutX="39.0" layoutY="56.0" prefHeight="200.0" prefWidth="366.0">
@@ -21,7 +20,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="33.0" prefWidth="146.0" text="Measurment1">
+                  <Label fx:id="mOne" prefHeight="33.0" prefWidth="146.0" text="Measurment1">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -35,7 +34,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="38.0" prefWidth="147.0" text="Measurment2">
+                  <Label fx:id="mTwo" prefHeight="38.0" prefWidth="147.0" text="Measurment2">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -49,7 +48,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="32.0" prefWidth="142.0" text="Measurment3">
+                  <Label fx:id="mThree" prefHeight="32.0" prefWidth="142.0" text="Measurment3">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -58,18 +57,18 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="452.0" layoutY="56.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Up">
+      <Button fx:id="onUpButton" layoutX="452.0" layoutY="56.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Up">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="452.0" layoutY="117.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Down">
+      <Button fx:id="onDownButton" layoutX="452.0" layoutY="117.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Down">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Circle fill="DODGERBLUE" layoutX="668.0" layoutY="103.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="637.0" layoutY="84.0" prefHeight="39.0" prefWidth="63.0" text="State" textAlignment="CENTER">
+      <Label fx:id="state" layoutX="637.0" layoutY="84.0" prefHeight="39.0" prefWidth="63.0" text="State" textAlignment="CENTER">
          <font>
             <Font size="27.0" />
          </font>
@@ -84,8 +83,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="555.0" layoutY="268.0" prefHeight="39.0" prefWidth="89.0" />
-      <TextField layoutX="555.0" layoutY="315.0" prefHeight="39.0" prefWidth="89.0" />
+      <TextField fx:id="critcalHighSetting" layoutX="555.0" layoutY="268.0" prefHeight="39.0" prefWidth="89.0" />
+      <TextField fx:id="criticalLowSetting" layoutX="555.0" layoutY="315.0" prefHeight="39.0" prefWidth="89.0" />
       <Button layoutX="720.0" layoutY="508.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="103.0" text="Logs">
          <font>
             <Font size="24.0" />
