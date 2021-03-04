@@ -1,9 +1,18 @@
 package model;
+import
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements Model {
+public class ModelManager implements Model, PropertyChangeListener {
+
   private Heater heater;
+  private double tempHigh;
+  private double tempLow;
+  private PropertyChangeSupport propertyChangeSupport;
+  private TemperatureSimulation temperatureSimulation;
+
   public ModelManager()
   {
     this.heater = new Heater();
@@ -63,6 +72,11 @@ public class ModelManager implements Model {
 
   @Override public void removeListener(String propertyName,
       PropertyChangeListener listener)
+  {
+
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
   {
 
   }
