@@ -1,5 +1,4 @@
 package model;
-import
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,6 +15,12 @@ public class ModelManager implements Model, PropertyChangeListener {
   public ModelManager()
   {
     this.heater = new Heater();
+    this.propertyChangeSupport = new PropertyChangeSupport(this);
+    this.temperatureSimulation = new TemperatureSimulation(1,7,this);
+    this.temperatureSimulation.addListener("t0",this);
+    this.temperatureSimulation.addListener("t1",this);
+    this.temperatureSimulation.addListener("t2",this);
+    this.heater.addListener("heater",this);
 
   }
 
@@ -26,17 +31,17 @@ public class ModelManager implements Model, PropertyChangeListener {
 
   @Override public int getPower()
   {
-    return 0;
+    return heater.getPower();
   }
 
   @Override public void turnUp()
   {
-
+    heater.turnUp();
   }
 
   @Override public void turnDown()
   {
-
+    heater.turnDown();
   }
 
   @Override public void setLow(double low)
@@ -51,33 +56,33 @@ public class ModelManager implements Model, PropertyChangeListener {
 
   @Override public double getT0()
   {
-    return 0;
+    return temperatureSimulation.getT0();
   }
 
   @Override public double getT1()
   {
-    return 0;
+    return temperatureSimulation.getT1();
   }
 
   @Override public double getT2()
   {
-    return 0;
+    return temperatureSimulation.getT2();
   }
 
   @Override public void addListener(String propertyName,
       PropertyChangeListener listener)
   {
-
+    propertyChangeSupport.addPropertyChangeListener(propertyName,listener);
   }
 
   @Override public void removeListener(String propertyName,
       PropertyChangeListener listener)
   {
-
+    propertyChangeSupport.removePropertyChangeListener(propertyName,listener);
   }
 
-  @Override public void propertyChange(PropertyChangeEvent evt)
+  @Override public void propertyChange(PropertyChangeEvent evt) // ASK ABOUT IF THIS IS NECESSARY
   {
-
+    propertyChangeSupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
   }
 }

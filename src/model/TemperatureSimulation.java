@@ -30,6 +30,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
       try{
         this.t0 = externalTemperature(t0);
         Thread.sleep(10000);
+        propertyChangeSupport.firePropertyChange("t0",null,t0);
       }
       catch (InterruptedException e)
       {
@@ -42,6 +43,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
       try{
         this.t1 = insideTemperature(t1, manager.getHeater().getPower(), d1, t0, 6);
         Thread.sleep(6000);
+        propertyChangeSupport.firePropertyChange("t1",null,t1);
       }
       catch (InterruptedException e)
       {
@@ -54,6 +56,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
       try{
         this.t2 = insideTemperature(t2, manager.getHeater().getPower(), d2, t0, 6);
         Thread.sleep(6000);
+        propertyChangeSupport.firePropertyChange("t2",null,t2);
       }
       catch (InterruptedException e)
       {
@@ -93,9 +96,8 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
   /*** Calculating the external temperature.* Values are only valid if the temperature is being measured
    * approximately every 10th second.*
    * * @param t0  the last measured external temperature
-   * @param min a lower limit (may temporally be deceeded)
-   * @param max an upper limit (may temporally be exceeded)
-   * @return an updated external temperature*/
+   * @return an updated external temperature
+   * */
   public double externalTemperature(double t0)
   {
     double left = t0 - min;
@@ -104,6 +106,23 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
     t0 += sign * Math.random();
     return t0;
   }
+
+  public double getT0()
+  {
+    return t0;
+  }
+
+  public double getT1()
+  {
+    return t1;
+  }
+
+  public double getT2()
+  {
+    return t2;
+  }
+
+
 
   @Override public void addListener(String propertyName,
       PropertyChangeListener listener)
