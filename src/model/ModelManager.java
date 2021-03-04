@@ -44,7 +44,7 @@ public class ModelManager implements Model, PropertyChangeListener {
     heater.turnDown();
   }
 
-  @Override public void setLow(double low)
+  @Override public void setLow(double low) // Ask about it
   {
 
   }
