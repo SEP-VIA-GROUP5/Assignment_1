@@ -90,5 +90,6 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Button fx:id="setHighLow" layoutX="583.0" layoutY="366.0" mnemonicParsing="false" text="Set" />
    </children>
 </AnchorPane>
