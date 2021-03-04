@@ -81,7 +81,7 @@ public class ModelManager implements Model, PropertyChangeListener {
     propertyChangeSupport.removePropertyChangeListener(propertyName,listener);
   }
 
-  @Override public void propertyChange(PropertyChangeEvent evt)
+  @Override public void propertyChange(PropertyChangeEvent evt) // ASK ABOUT IF THIS IS NECESSARY
   {
     propertyChangeSupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
   }
