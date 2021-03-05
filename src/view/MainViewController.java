@@ -2,6 +2,7 @@ package view;
 
 
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ public class MainViewController
   @FXML private Label state;
   @FXML private Label errorLabel;
   @FXML private TextField critcalHighSetting;
-  @FXML private TextField critcalLowSetting;
+  @FXML private TextField criticalLowSetting;
 
   private TemperatureViewModel viewModel;
   private ViewHandler handler;
@@ -38,7 +39,7 @@ public class MainViewController
     Bindings.bindBidirectional(mTwo.textProperty(),viewModel.getT1(), new NumberStringConverter());
     Bindings.bindBidirectional(mThree.textProperty(),viewModel.getT2(), new NumberStringConverter());
     Bindings.bindBidirectional(state.textProperty(),viewModel.getPower(), new NumberStringConverter());
-    Bindings.bindBidirectional(critcalLowSetting.textProperty(),viewModel.getTempLow(), new NumberStringConverter());
+    Bindings.bindBidirectional(criticalLowSetting.textProperty(),viewModel.getTempLow(), new NumberStringConverter());
     Bindings.bindBidirectional(critcalHighSetting.textProperty(),viewModel.getTempHigh(), new NumberStringConverter());
     Bindings.bindBidirectional(errorLabel.textProperty(),viewModel.getError());
   }
@@ -59,8 +60,10 @@ public class MainViewController
 
   @FXML private void onSetHighLow()
   {
+    errorLabel.setText("");
     viewModel.setTempHigh();
     viewModel.setTempLow();
+
   }
 
   @FXML private void onDownButton()
@@ -73,4 +76,6 @@ public class MainViewController
     viewModel.turnUp();
   }
 
+  @FXML public void onLogButton(ActionEvent actionEvent) {
+    }
 }
