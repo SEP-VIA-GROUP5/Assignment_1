@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainView">
+<AnchorPane prefHeight="600.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
    <children>
       <VBox layoutX="39.0" layoutY="56.0" prefHeight="200.0" prefWidth="366.0">
          <children>
@@ -57,12 +57,12 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="onUpButton" layoutX="452.0" layoutY="56.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Up">
+      <Button fx:id="onUpButton" layoutX="452.0" layoutY="56.0" mnemonicParsing="false" onAction="#onUpButton" prefHeight="39.0" prefWidth="89.0" text="Up">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="onDownButton" layoutX="452.0" layoutY="117.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Down">
+      <Button fx:id="onDownButton" layoutX="452.0" layoutY="117.0" mnemonicParsing="false" onAction="#onDownButton" prefHeight="39.0" prefWidth="89.0" text="Down">
          <font>
             <Font size="18.0" />
          </font>
@@ -83,13 +83,14 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="critcalHighSetting" layoutX="555.0" layoutY="268.0" prefHeight="39.0" prefWidth="89.0" />
-      <TextField fx:id="criticalLowSetting" layoutX="555.0" layoutY="315.0" prefHeight="39.0" prefWidth="89.0" />
-      <Button layoutX="720.0" layoutY="508.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="103.0" text="Logs">
+      <TextField fx:id="critcalHighSetting" layoutX="555.0" layoutY="268.0" prefHeight="39.0" prefWidth="89.0" text="20" />
+      <TextField fx:id="criticalLowSetting" layoutX="555.0" layoutY="315.0" prefHeight="39.0" prefWidth="89.0" text="-20" />
+      <Button layoutX="720.0" layoutY="508.0" mnemonicParsing="false" onAction="#onLogButton" prefHeight="61.0" prefWidth="103.0" text="Logs">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="setHighLow" layoutX="583.0" layoutY="366.0" mnemonicParsing="false" text="Set" />
+      <Button fx:id="setHighLow" layoutX="583.0" layoutY="366.0" mnemonicParsing="false" onAction="#onSetHighLow" text="Set" />
+      <Label fx:id="errorLabel" layoutX="128.0" layoutY="508.0" text="Label" />
    </children>
 </AnchorPane>
