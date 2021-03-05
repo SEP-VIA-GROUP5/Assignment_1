@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.*;
 
 import java.beans.PropertyChangeListener;
@@ -22,63 +23,68 @@ public class TemperatureViewModel implements PropertyChangeListener
   private Model model;
   private PropertyChangeSupport propertyChangeSupport;
 
-  public TemperatureViewModel()
+  public TemperatureViewModel(Model model)
   {
-    this.model.addListener("t0", this);
-    this.model.addListener("t1", this);
-    this.model.addListener("t2", this);
-    this.model.addListener("heater", this);
-    this.t0 = new SimpleDoubleProperty();
-    this.t1 = new SimpleDoubleProperty();
-    this.t2 = new SimpleDoubleProperty();
+    this.model = model;
+
+    this.t0 = new SimpleDoubleProperty(model.getT0());
+    this.t1 = new SimpleDoubleProperty(model.getT1());
+    this.t2 = new SimpleDoubleProperty(model.getT2());
     this.power = new SimpleIntegerProperty();
     this.tempLow = new SimpleDoubleProperty();
     this.tempHigh = new SimpleDoubleProperty();
     this.error = new SimpleStringProperty();
+    this.model.addListener("t0", this);
+    this.model.addListener("t1", this);
+    this.model.addListener("t2", this);
+    this.model.addListener("heater", this);
   }
 
   @Override public void propertyChange(
       PropertyChangeEvent evt) //platform run later
   {
-    switch (evt.getPropertyName())
-    {
-      case "t0":
+    Platform.runLater(() -> {
+      switch (evt.getPropertyName())
       {
-        t0.set((Double) evt.getNewValue());
-        break;
-      }
-      case "t1":
-      {
-        double index = (Double) evt.getNewValue();
-        t1.set(index);
-        if (index < tempLow.get())
+        case "t0":
         {
-          error.set("temperature is too low!");
+          t0.set((Double) evt.getNewValue());
+          break;
         }
-        else if (index > tempHigh.get())
+        case "t1":
         {
-          error.set("temperature is too high!");
+          double index = (Double) evt.getNewValue();
+          t1.set(index);
+          if (index < tempLow.get())
+          {
+            error.set("temperature is too low!");
+          }
+          else if (index > tempHigh.get())
+          {
+            error.set("temperature is too high!");
+          }
+          break;
         }
-        break;
-      }
-      case "t2":
-      {
-        double index = (Double) evt.getNewValue();
-        t2.set(index);
-        if (index < tempLow.get())
+        case "t2":
         {
-          error.set("temperature is too low!");
+          double index = (Double) evt.getNewValue();
+          t2.set(index);
+          if (index < tempLow.get())
+          {
+            error.set("temperature is too low!");
+          }
+          else if (index > tempHigh.get())
+          {
+            error.set("temperature is too high!");
+          }
         }
-        else if (index > tempHigh.get())
-        {
-          error.set("temperature is too high!");
-        }
-      }
-      case "heater":
-        power.set(model.getPower());
-        break;
+        case "heater":
+          power.set(model.getPower());
+          break;
 
-    }
+      }
+    });
+
   }
 
   public DoubleProperty getT0()
