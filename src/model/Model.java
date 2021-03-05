@@ -12,7 +12,7 @@ public interface Model extends NamedPropertyChangeSubject {
   double getT1();
   double getT2();
   Heater getHeater();
-  void addTemperature(double temperature, String id);
+
 
 
 }
