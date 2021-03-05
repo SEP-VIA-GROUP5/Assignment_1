@@ -7,62 +7,63 @@ import javax.swing.plaf.TableHeaderUI;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class TemperatureSimulation implements NamedPropertyChangeSubject
+public class TemperatureSimulation implements NamedPropertyChangeSubject, Runnable
 {
   private int d1; //distance 1
   private int d2; //distance 2
   private double t0;
   private double t1;
   private double t2;
-  private ModelManager manager;
+  private Model model;
   private static final int min = -10;
   private static final int max = 10;
   private PropertyChangeSupport propertyChangeSupport;
 
-  public TemperatureSimulation(int d1, int d2, ModelManager manager)
+  public TemperatureSimulation(int d1, int d2, Model model)
   {
     propertyChangeSupport = new PropertyChangeSupport(this);
     this.d1 = d1;
     this.d2 = d2;
-    this.manager = manager;
-    Thread t00 = new Thread(() ->
-    {
-      try{
-        this.t0 = externalTemperature(t0);
-        Thread.sleep(10000);
-        propertyChangeSupport.firePropertyChange("t0",null,t0);
-      }
-      catch (InterruptedException e)
-      {
-        e.printStackTrace();
-      }
-    });
+    this.model = model;
+  }
 
-    Thread t11 = new Thread(() ->
+  @Override public void run()
+  {
+    while(true)
     {
-      try{
-        this.t1 = insideTemperature(t1, manager.getHeater().getPower(), d1, t0, 6);
-        Thread.sleep(6000);
-        propertyChangeSupport.firePropertyChange("t1",null,t1);
-      }
-      catch (InterruptedException e)
-      {
-        e.printStackTrace();
-      }
-    });
+        try{
+          this.t0 = externalTemperature(t0);
+          Thread.sleep(10000);
+          propertyChangeSupport.firePropertyChange("t0",null,t0);
+        }
+        catch (InterruptedException e)
+        {
+          e.printStackTrace();
+        }
 
-    Thread t22 = new Thread(() ->
-    {
-      try{
-        this.t2 = insideTemperature(t2, manager.getHeater().getPower(), d2, t0, 6);
-        Thread.sleep(6000);
-        propertyChangeSupport.firePropertyChange("t2",null,t2);
-      }
-      catch (InterruptedException e)
-      {
-        e.printStackTrace();
-      }
-    });
+        try{
+          this.t1 = insideTemperature(t1, model.getHeater().getPower(), d1, t0, 6);
+          Thread.sleep(6000);
+          propertyChangeSupport.firePropertyChange("t1",null,t1);
+        }
+        catch (InterruptedException e)
+        {
+          e.printStackTrace();
+        }
+
+        try{
+          this.t2 = insideTemperature(t2, model.getHeater().getPower(), d2, t0, 6);
+          Thread.sleep(6000);
+          propertyChangeSupport.firePropertyChange("t2",null,t2);
+        }
+        catch (InterruptedException e)
+        {
+          e.printStackTrace();
+        }
+
+
+    }
+
   }
 
   /*** Calculating the internal temperature in one of two locations.
