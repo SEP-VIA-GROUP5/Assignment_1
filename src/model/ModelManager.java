@@ -86,8 +86,4 @@ public class ModelManager implements Model, PropertyChangeListener {
     System.out.println(evt.getPropertyName());
   }
 
-  @Override
-  public void addTemperature(double temperature, String id) {
-    propertyChangeSupport.firePropertyChange(id,null, temperature);
-  }
 }
