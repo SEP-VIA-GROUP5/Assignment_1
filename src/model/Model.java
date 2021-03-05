@@ -11,5 +11,7 @@ public interface Model extends NamedPropertyChangeSubject {
   double getT0();
   double getT1();
   double getT2();
+  Heater getHeater();
+
 
 }
