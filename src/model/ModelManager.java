@@ -16,11 +16,10 @@ public class ModelManager implements Model, PropertyChangeListener {
   {
     this.heater = new Heater();
     this.propertyChangeSupport = new PropertyChangeSupport(this);
-    this.temperatureSimulation = new TemperatureSimulation(1,7,this);
-    this.temperatureSimulation.addListener("t0",this);
-    this.temperatureSimulation.addListener("t1",this);
-    this.temperatureSimulation.addListener("t2",this);
     this.heater.addListener("heater",this);
+    this.temperatureSimulation = new TemperatureSimulation(1,7,this);
+    this.temperatureSimulation.addListener(null,this);
+
 
   }
 
@@ -84,5 +83,11 @@ public class ModelManager implements Model, PropertyChangeListener {
   @Override public void propertyChange(PropertyChangeEvent evt) // ASK ABOUT IF THIS IS NECESSARY
   {
     propertyChangeSupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
+    System.out.println(evt.getPropertyName());
+  }
+
+  @Override
+  public void addTemperature(double temperature, String id) {
+    propertyChangeSupport.firePropertyChange(id,null, temperature);
   }
 }
