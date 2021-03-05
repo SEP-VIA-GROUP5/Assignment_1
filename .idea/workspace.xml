@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="326cefaf-14c7-4d44-9ce4-acfee974eec2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Heater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Heater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ModelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ModelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TemperatureSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TemperatureSimulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/TemperatureViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/TemperatureViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/viewmodel/ViewModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/viewmodel/ViewModelFactory.java" afterDir="false" />
-    </list>
+    <list default="true" id="326cefaf-14c7-4d44-9ce4-acfee974eec2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +65,7 @@
       <updated>1614955229479</updated>
       <workItem from="1614955230560" duration="2003000" />
       <workItem from="1614957313012" duration="3002000" />
+      <workItem from="1614960392082" duration="352000" />
     </task>
     <servers />
   </component>
