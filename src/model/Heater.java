@@ -24,10 +24,12 @@ public class Heater implements NamedPropertyChangeSubject
   public void turnUp()
   {
     state.turnUp(this);
+    propertyChangeSupport.firePropertyChange("heater",null,getPower());
   }
   public void turnDown()
   {
     state.turnDown(this);
+    propertyChangeSupport.firePropertyChange("heater",null,getPower());
   }
 
   public int getPower()
