@@ -2,12 +2,13 @@ package model;
 
 import model.*;
 import utility.observer.subject.NamedPropertyChangeSubject;
+import viewmodel.ViewModelFactory;
 
 import javax.swing.plaf.TableHeaderUI;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class TemperatureSimulation implements NamedPropertyChangeSubject, Runnable
+public class TemperatureSimulation implements NamedPropertyChangeSubject
 {
   private int d1; //distance 1
   private int d2; //distance 2
@@ -25,46 +26,96 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject, Runnab
     this.d1 = d1;
     this.d2 = d2;
     this.model = model;
-  }
-
-  @Override public void run()
-  {
-    while(true)
-    {
-        try{
+    Thread t00 = new Thread(() -> {
+      while(true)
+      {
+        try
+        {
           this.t0 = externalTemperature(t0);
           Thread.sleep(10000);
-          propertyChangeSupport.firePropertyChange("t0",null,t0);
+          propertyChangeSupport.firePropertyChange("t0", null, t0);
         }
         catch (InterruptedException e)
         {
           e.printStackTrace();
         }
-
-        try{
-          this.t1 = insideTemperature(t1, model.getHeater().getPower(), d1, t0, 6);
+      }
+    });
+    Thread t11 = new Thread(() -> {
+      while(true)
+      {
+        try
+        {
+          this.t1 = insideTemperature(t1, model.getHeater().getPower(), d1, t0,
+                  6);
           Thread.sleep(6000);
-          propertyChangeSupport.firePropertyChange("t1",null,t1);
+          propertyChangeSupport.firePropertyChange("t1", null, t1);
         }
         catch (InterruptedException e)
         {
           e.printStackTrace();
         }
-
-        try{
-          this.t2 = insideTemperature(t2, model.getHeater().getPower(), d2, t0, 6);
+      }
+    });
+    Thread t22 = new Thread(() -> {
+      while(true)
+      {
+        try
+        {
+          this.t2 = insideTemperature(t2, model.getHeater().getPower(), d2, t0,
+                  6);
           Thread.sleep(6000);
-          propertyChangeSupport.firePropertyChange("t2",null,t2);
+          propertyChangeSupport.firePropertyChange("t2", null, t2);
         }
         catch (InterruptedException e)
         {
           e.printStackTrace();
         }
-
-
-    }
-
+      }
+    });
+    t00.start();
+    t11.start();
+    t22.start();
   }
+
+//  @Override public void run()
+//  {
+//    while(true)
+//    {
+//        try{
+//          this.t0 = externalTemperature(t0);
+//          Thread.sleep(10000);
+//          model.addTemperature(t0,"t0");
+//        }
+//        catch (InterruptedException e)
+//        {
+//          e.printStackTrace();
+//        }
+//
+//        try{
+//          this.t1 = insideTemperature(t1, model.getHeater().getPower(), d1, t0, 6);
+//          Thread.sleep(6000);
+//          model.addTemperature(t1,"t1");
+//        }
+//        catch (InterruptedException e)
+//        {
+//          e.printStackTrace();
+//        }
+//
+//        try{
+//          this.t2 = insideTemperature(t2, model.getHeater().getPower(), d2, t0, 6);
+//          Thread.sleep(6000);
+//          model.addTemperature(t2,"t2");
+//        }
+//        catch (InterruptedException e)
+//        {
+//          e.printStackTrace();
+//        }
+//
+//
+//    }
+//
+//  }
 
   /*** Calculating the internal temperature in one of two locations.
    *
@@ -123,17 +174,30 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject, Runnab
     return t2;
   }
 
-
-
   @Override public void addListener(String propertyName,
-      PropertyChangeListener listener)
+                                    PropertyChangeListener listener)
   {
-    propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+    if (propertyName == null)
+    {
+      propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+    else
+    {
+      propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+    }
   }
 
   @Override public void removeListener(String propertyName,
-      PropertyChangeListener listener)
+                                       PropertyChangeListener listener)
   {
-    propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+    if (propertyName == null)
+    {
+      propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+    else
+    {
+      propertyChangeSupport
+              .removePropertyChangeListener(propertyName, listener);
+    }
   }
 }
