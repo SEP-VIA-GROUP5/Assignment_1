@@ -1,6 +1,8 @@
 package model;
 import utility.observer.subject.NamedPropertyChangeSubject;
 
+import java.util.ArrayList;
+
 public interface Model extends NamedPropertyChangeSubject {
 
   int getPower();
@@ -12,7 +14,6 @@ public interface Model extends NamedPropertyChangeSubject {
   double getT1();
   double getT2();
   Heater getHeater();
-
-
-
+  ArrayList<Temperature> getTemperatures();
+  void addTemperature(String name, String temperature);
 }

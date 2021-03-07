@@ -3,6 +3,7 @@ package model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class ModelManager implements Model, PropertyChangeListener {
 
@@ -11,6 +12,7 @@ public class ModelManager implements Model, PropertyChangeListener {
   private double tempLow;
   private PropertyChangeSupport propertyChangeSupport;
   private TemperatureSimulation temperatureSimulation;
+  private ArrayList<Temperature> temperatures;
 
   public ModelManager()
   {
@@ -19,8 +21,7 @@ public class ModelManager implements Model, PropertyChangeListener {
     this.heater.addListener("heater",this);
     this.temperatureSimulation = new TemperatureSimulation(1,7,this);
     this.temperatureSimulation.addListener(null,this);
-
-
+    temperatures = new ArrayList<>();
   }
 
   public Heater getHeater()
@@ -83,7 +84,15 @@ public class ModelManager implements Model, PropertyChangeListener {
   @Override public void propertyChange(PropertyChangeEvent evt) // ASK ABOUT IF THIS IS NECESSARY
   {
     propertyChangeSupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
-    System.out.println(evt.getPropertyName());
   }
 
+  @Override
+  public ArrayList<Temperature> getTemperatures() {
+    return temperatures;
+  }
+
+  @Override
+  public void addTemperature(String name, String temperature) {
+    temperatures.add(new Temperature(name,temperature));
+  }
 }

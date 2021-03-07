@@ -29,6 +29,11 @@ public class ViewHandler
         switchView("Heater");
     }
 
+    public void stop()
+    {
+        primaryStage.close();
+    }
+
     void switchView(String view)
     {
         root = null;
@@ -39,9 +44,9 @@ public class ViewHandler
                 case "Heater":
                     root = loadMainView("MainView.fxml");
                     break;
-//                    case "History":
-//                    root = loadLogView("LogView.fxml");
-//                    break;
+                    case "History":
+                    root = loadLogView("LogView.fxml");
+                    break;
             }
             currentScene.setRoot(root);
             String title = "";
@@ -85,29 +90,29 @@ public class ViewHandler
         return mainViewController.getRoot();
     }
 
-//   private Region loadLogView(String fxmlFile)
-//    {
-//        if (logViewController == null)
-//        {
-//            try
-//            {
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource(fxmlFile));
-//                Region root = loader.load();
-//                logViewController = loader.getController();
-//                logViewController.init(this, viewModelFactory.getLogViewModel(), root);
-//            }
-//            catch (Exception e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        else
-//        {
-//            logViewController.reset();
-//        }
-//        return logViewController.getRoot();
-//    }
+   private Region loadLogView(String fxmlFile)
+    {
+        if (logViewController == null)
+        {
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                logViewController = loader.getController();
+                logViewController.init(this, viewModelFactory.getLogViewModel(), root);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            logViewController.reset();
+        }
+        return logViewController.getRoot();
+    }
 
 
 }

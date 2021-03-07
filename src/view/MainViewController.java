@@ -22,7 +22,7 @@ public class MainViewController
   @FXML private TextField criticalLowSetting;
 
   private TemperatureViewModel viewModel;
-  private ViewHandler handler;
+  private ViewHandler viewHandler;
   private Region root;
 
   public MainViewController()
@@ -30,10 +30,10 @@ public class MainViewController
 
   }
 
-  public void init(ViewHandler handler, TemperatureViewModel viewModel, Region root)
+  public void init(ViewHandler viewHandler, TemperatureViewModel viewModel, Region root)
   {
     this.viewModel = viewModel;
-    this.handler = handler;
+    this.viewHandler = viewHandler;
     this.root = root;
     Bindings.bindBidirectional(mOne.textProperty(),viewModel.getT0(), new NumberStringConverter());
     Bindings.bindBidirectional(mTwo.textProperty(),viewModel.getT1(), new NumberStringConverter());
@@ -76,6 +76,7 @@ public class MainViewController
     viewModel.turnUp();
   }
 
-  @FXML public void onLogButton(ActionEvent actionEvent) {
+  @FXML public void onLogButton() {
+    viewHandler.switchView("History");
     }
 }

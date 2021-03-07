@@ -10,7 +10,7 @@ public class ViewModelFactory {
     public ViewModelFactory(Model model)
     {
         temperatureViewModel = new TemperatureViewModel(model);
-//        logViewModel = new LogViewModel(model);
+        logViewModel = new LogViewModel(model);
     }
 
     public LogViewModel getLogViewModel() {

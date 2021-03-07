@@ -34,6 +34,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
           this.t0 = externalTemperature(t0);
           Thread.sleep(10000);
           propertyChangeSupport.firePropertyChange("t0", null, t0);
+          model.addTemperature("t0",String.valueOf(t0));
         }
         catch (InterruptedException e)
         {
@@ -50,6 +51,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
                   6);
           Thread.sleep(6000);
           propertyChangeSupport.firePropertyChange("t1", null, t1);
+          model.addTemperature("t1",String.valueOf(t1));
         }
         catch (InterruptedException e)
         {
@@ -66,6 +68,7 @@ public class TemperatureSimulation implements NamedPropertyChangeSubject
                   6);
           Thread.sleep(6000);
           propertyChangeSupport.firePropertyChange("t2", null, t2);
+          model.addTemperature("t2",String.valueOf(t2));
         }
         catch (InterruptedException e)
         {

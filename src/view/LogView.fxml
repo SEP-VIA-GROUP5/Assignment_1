@@ -34,9 +34,8 @@
             </Button>
             <TableView fx:id="temperatureTableView" layoutX="28.0" layoutY="119.0" prefHeight="284.0" prefWidth="706.0">
               <columns>
-                <TableColumn fx:id="thermometer1Column" prefWidth="215.0" text="Thermometer 1" />
-                <TableColumn fx:id="thermometer2Column" minWidth="0.0" prefWidth="247.0" text="Thermometer 2" />
-                  <TableColumn fx:id="outsideThermometerColumn" minWidth="2.0" prefWidth="243.0" text="Outside Thermometer" />
+                <TableColumn fx:id="nameColumn" prefWidth="342.0" text="Name" />
+                <TableColumn fx:id="temperatureColumn" minWidth="0.0" prefWidth="363.0" text="Temperature" />
               </columns>
             </TableView>
          </children>
